@@ -1,0 +1,38 @@
+.container{
+  height: 400px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid white;
+  padding: 10px 10px;
+  box-shadow: 2px 4px 4px gray;
+  border-radius: 5px;
+}
+.container:hover{
+  scale: 1.01;
+}
+.img_container{
+  display: flex;
+  justify-content: center;
+}
+.text_container{
+  text-overflow: ellipsis;
+  font-size: 12px;
+  
+}
+.text_container p{
+  font-size: 16px;
+}
+.cart_btn button{
+  max-width: 300px;
+  width: 280px;
+  height: 40px;
+  color: white;
+  background-color: green;
+  border: none;
+}
+.cart_btn button:hover{
+scale: 1.05;
+color: antiquewhite;
+}
