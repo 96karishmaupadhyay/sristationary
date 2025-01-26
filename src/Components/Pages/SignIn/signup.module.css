@@ -26,7 +26,7 @@
    
     color: transparent;
 }
-.login_box{
+.signup_box{
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -36,12 +36,12 @@
     font-weight: 700;
 
 }
-.login_box div{
+.signup_box div{
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
-.login_box div input{
+.signup_box div input{
     height: 40px;
     padding-left: 10px;
     outline: none;
@@ -51,7 +51,7 @@ button{
     height: 40px;
     font-size: 20px;
     font-weight: 600;
-    background-color: rgb(0, 149, 255);
+    background-color: rgb(255, 166, 0);
     border: none;
     color: white;
 }
