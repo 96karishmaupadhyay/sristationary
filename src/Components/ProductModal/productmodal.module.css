@@ -1,0 +1,41 @@
+.container{
+   max-height: 400px;
+    max-width: 400px;
+    background-color: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+  border-radius: 5px;
+    padding: 20px;
+    box-shadow: 2px 4px 4px rgb(182, 170, 170);
+    border-top: 1px solid grey;
+    border-left: 1px solid gray;
+    z-index: 100;
+}
+input{
+    height: 40px;
+    padding-left: 4px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid green;
+    background-color: none;
+}
+.btn_box{
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+}
+.btn_box button{
+    font-size: 16px;
+    padding: 5px;
+    width: 120px;
+}
+.cancle{
+    background-color: red;
+}
+.save{
+    background-color: green;
+}

@@ -14,6 +14,14 @@ const Products = () => {
       {data.map((item) => (
         <Card key={item.id} item={item} />
       ))}
+      {/* {products.length > itemPerPage && (
+        <Pagination
+          totalItems={products.length}
+          itemsPerPage={itemPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )} */}
     </div>
   );
 };
