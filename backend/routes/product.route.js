@@ -14,10 +14,10 @@ const upload = multer({ storage });
 const router = express.Router();
 
 // Routes
-router.post('/products', upload.single('image'), createProduct); // Use multer's upload for file handling
+router.post('/products', upload.single('image'), createProduct); 
 router.get('/products', getAllProduct);
 router.get('/products/:id', getProductById);
-router.put('/products/:id', upload.single('image'), updateProduct); // Handle image upload if updating
+router.put('/products/:id', upload.single('image'), updateProduct); 
 router.delete('/products/:id', deleteProduct);
 
 export default router;

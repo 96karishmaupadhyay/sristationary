@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './products.module.css';
-import data from '../../data';
-import Card from '../Card/Card';
+import Card from "../Card/Card";
+import axios from 'axios';
 
 const Products = () => {
-  console.log(data)
+  const [data, setData] = useState([]);
+  const url = "http://localhost:5500/api/products";
+
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        //
+        setData(response.data); 
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();  
+  }, []);  
+
   if (!data || data.length === 0) {
-    return <p>No products available</p>;  // Added empty state handling
+    return <p>No products available</p>;
   }
 
   return (
-    <div className={styles.productsWrapper}>  {/* Wrapper class for styling */}
+    <div className={styles.productsWrapper}>
+    
       {data.map((item) => (
-        <Card key={item.id} item={item} />
+        <Card key={item._id} item={item} /> 
       ))}
-      {/* {products.length > itemPerPage && (
-        <Pagination
-          totalItems={products.length}
-          itemsPerPage={itemPerPage}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-      )} */}
+        
     </div>
   );
 };

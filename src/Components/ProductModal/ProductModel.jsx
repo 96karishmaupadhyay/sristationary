@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styles from "./productmodal.module.css"
+import axios from "axios"
 const ProductModel = ({addProduct,modal}) => {//both from 
     const [product,setProduct]=useState({
         name:"",
@@ -7,25 +8,64 @@ const ProductModel = ({addProduct,modal}) => {//both from
         stock:"",
         image:""
     })
-    const handleChange=(e)=>{
-        const {name,value}=e.target;
-        if (name === 'file') {
-            // Handle image file separately
-            const file = e.target.files[0];
-            if (file) {
-              const imageUrl = URL.createObjectURL(file); // Create a URL for the uploaded image
-              setProduct({
-                ...product,
-                image: imageUrl, // Store image URL in state
-              });
-            }
-          } else {
-            setProduct({ ...product, [name]: value });
-          }
-    }
-    const handleSave=(e)=>{
+
+    
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      
+      if (name === 'file') {
+       
+        const file = e.target.files[0];
+        if (file) {
+          
+          const imageUrl = URL.createObjectURL(file);
+    
+          setProduct({
+            ...product,
+            image: file, 
+            imageUrl: imageUrl, 
+          });
+          localStorage.setItem("product", JSON.stringify({
+            ...product,
+            image: file,
+            imageUrl: imageUrl
+          }));
+        }
+      } else {
+        setProduct({ ...product, [name]: value });
+      }
+    };
+    
+
+    
+    const handleSave=async(e)=>{
 e.preventDefault();
-addProduct(product)
+if(!product.image){
+  console.error("image is manadatory");
+  return;
+}
+const productData=new FormData();
+productData.append("name",product.name);
+productData.append("price",product.price);
+productData.append("stock",product.stock);
+productData.append("image",product.image)
+try {
+  console.log('Product data to be sent:', product);
+
+  // Send product data to the backend
+  const response = await axios.post('http://localhost:5500/api/products', productData, {
+    headers: {
+      'Content-Type': 'multipart/form-data', // Important for file upload
+    },
+  });
+  addProduct({ ...product, _id: response.data._id })
+  console.log(`Response data: ${JSON.stringify(response.data)}`);
+
+  modal(false);
+} catch (error) {
+  console.error('Error saving product:', error.response ? error.response.data : error.message);
+}
+
   modal(false)
     }
     const handleCancle=()=>{

@@ -3,6 +3,7 @@ import styles from "./dashboard.module.css"
 import img from "../../../assets/img1.png"
 import ProductModel from '../../ProductModal/ProductModel'
 import ProductList from '../../ProductList/ProductList'
+import axios from 'axios'
 const Dashboard = () => {
     const [showModel,setShowmodel]=useState(false)
     const [products,setProducts]=useState([])
@@ -11,10 +12,20 @@ const Dashboard = () => {
     }
   const  handleEdit=(newdetail)=>{
     setShowmodel(true)
-    setProducts(products.map(product=>product.id === newdetail.id ? newdetail : product))
+    setProducts(products.map(product=>product._id === newdetail._id ? newdetail : product))
     }
-    const handleDelete=(id)=>{
-        setProducts(products.filter(product => product.id !== id));
+    const handleDelete=async(_id)=>{
+      try {
+        
+        
+          setProducts((prevProducts) =>
+            prevProducts.filter((product) => product._id !== _id)
+      
+        )
+        console.log(`id num: ${_id}`);
+      } catch (error) {
+        console.error('Error deleting product:', error.response ? error.response.data.message : error.message);
+      }
     }
   return (
     <div className={styles.container}>
@@ -43,3 +54,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+

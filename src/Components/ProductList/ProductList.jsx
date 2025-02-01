@@ -11,14 +11,16 @@ const ProductList = ({products,editbtn,deletebtn}) => {
     <div>
         <div className={styles.product_items}>
         {currentProducts.map((product) => (
-          <div key={product.id} className={styles.product_item}>
-            <img src={product.image} alt="" />
+          <div key={product._id} className={styles.product_item}>
+            <img src={product.imageUrl} alt="" />
             <h6>{product.name}</h6>
             {/* <p>{product.description}</p> */}
             <p>Price: ₹{product.price}</p>
             <div className={styles.btn_container}>
             <button onClick={() => editbtn(product)} className={styles.edit}>Edit</button>
-            <button onClick={() => deletebtn(product.id)} className={styles.delete}>Delete</button>
+            <button onClick={() =>{
+              console.log("Product object:", product)
+              deletebtn(product._id)}} className={styles.delete}>Delete</button>
             </div>
             
           </div>
