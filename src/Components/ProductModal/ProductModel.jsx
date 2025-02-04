@@ -53,7 +53,7 @@ try {
   console.log('Product data to be sent:', product);
 
   // Send product data to the backend
-  const response = await axios.post('http://localhost:5500/api/products', productData, {
+  const response = await axios.post('https://sristationary-backend.onrender.com', productData, {
     headers: {
       'Content-Type': 'multipart/form-data', // Important for file upload
     },

@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Products = () => {
   const [data, setData] = useState([]);
-  const url = "http://localhost:5500/api/products";
+  const url = "https://sristationary-backend.onrender.com";
 
  
   useEffect(() => {
